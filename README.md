@@ -1,6 +1,11 @@
 FTS Flatcurve plugin for Dovecot
 ================================
 
+Why This Fork?
+--------------
+
+EL9 repos provide Dovecot 2.3.16 built with stemmer and icu as Flatcurve requires, along with the added benefit of security backports and long-term support. So far the only breaking change from version 0.2 and 0.3+ is the switch Dovecot 2.3.17 to file based locking instead of dot locking. By reverting that change, ideally FTS-Flatcurve will be usable with EL9 distros without having to rebuild Dovecot until such time as they adopt Dovecot 2.4+ once it's released.
+
 ***fts-flatcurve will become the default Dovecot Community Edition (CE) FTS driver
 in v2.4 (merged into Dovecot core in April 2022:
 https://github.com/dovecot/core/commit/137572e77fdf79b2e8d607021667741ed3f19da1).
