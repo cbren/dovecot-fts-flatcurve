@@ -4,11 +4,15 @@
 #ifndef FTS_FLATCURVE_BACKEND_H
 #define FTS_FLATCURVE_BACKEND_H
 
-#include "file-lock.h"
 #include "fts-flatcurve-plugin.h"
 
 #define FTS_FLATCURVE_LABEL "fts-flatcurve"
 #define FTS_FLATCURVE_DEBUG_PREFIX FTS_FLATCURVE_LABEL ": "
+
+enum flatcurve_lock_flags {
+	FLATCURVE_LOCK_NFS_FLUSH        = BIT(0),
+	FLATCURVE_LOCK_DOTLOCK_USE_EXCL = BIT(1)
+};
 
 struct flatcurve_fts_backend {
 	struct fts_backend backend;
@@ -19,7 +23,7 @@ struct flatcurve_fts_backend {
 	struct fts_flatcurve_user *fuser;
 	struct flatcurve_xapian *xapian;
 
-	enum file_lock_method parsed_lock_method;
+	enum flatcurve_lock_flags lock_flags;
 
 	pool_t pool;
 
